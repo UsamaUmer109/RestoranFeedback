@@ -39,7 +39,7 @@ Route::prefix('admin')->middleware('admin')->group(function(){
     Route::get('/product/delete/{id}',  [AdminController::class, 'deleteProduct'])->name('admin.deleteProduct');
     // Rating and Feedback
     Route::get('/ratings', [RatingController::class, 'ratings'])->name('admin.ratings');
-    Route::post('/admin/updateRatingStatus', [RatingController::class, 'updateRatingStatus'])->name('admin.updateRatingStatus');
 });
+Route::post('/admin/updateRatingStatus', [RatingController::class, 'updateRatingStatus'])->name('admin.updateRatingStatus');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

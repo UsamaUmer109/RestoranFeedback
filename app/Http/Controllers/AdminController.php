@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Rating;
 
 class AdminController extends Controller
 {
@@ -17,10 +18,11 @@ class AdminController extends Controller
     // show admin dashboard
     public function dashboard(Request $request)
     {
-        $categoriescount = Category::count();
-        $productscount   = Product::count();
-        $userscount      = User::count();
-        return view('admin.dashboard', compact('categoriescount', 'productscount', 'userscount'));
+        $categoriescount    = Category::count();
+        $productscount      = Product::count();
+        $userscount         = User::count();
+        $feedbackcount      = Rating::count();
+        return view('admin.dashboard', compact('categoriescount', 'productscount', 'userscount', 'feedbackcount'));
     }
     // show admin user list
     public function users(Request $request)
