@@ -37,6 +37,7 @@
 <script src="{{ asset('admin/js/todolist.js') }}"></script>
 <!-- endinject -->
 <!-- Custom js for this page-->
+<script src="{{ asset('admin/js/custom.js') }}"></script>
 <script src="{{ asset('admin/js/dashboard.js') }}"></script>
 <script src="{{ asset('admin/js/Chart.roundedBarCharts.js') }}"></script>
 <!-- End custom js for this page-->
