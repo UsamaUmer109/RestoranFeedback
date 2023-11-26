@@ -10,11 +10,9 @@
         <div class="navbar-nav ms-auto py-0 pe-4">
             <a href="{{ url('/') }}" class="nav-item nav-link{{ Request::is('/') ? ' active' : '' }}">Home</a>
             <a href="#about" class="nav-item nav-link {{ Request::is('/#about') ? ' active' : '' }}">About</a>
-            <a href="{{ url('service') }}"
-                class="nav-item nav-link{{ Request::is('service') ? ' active' : '' }}">Service</a>
-            <a href="{{ url('menu') }}" class="nav-item nav-link{{ Request::is('menu') ? ' active' : '' }}">Menu</a>
-            <a href="{{ url('contact') }}"
-                class="nav-item nav-link{{ Request::is('contact') ? ' active' : '' }}">Contact</a>
+            <a href="#service" class="nav-item nav-link{{ Request::is('/#service') ? ' active' : '' }}">Service</a>
+            <a href="#menu" class="nav-item nav-link{{ Request::is('/#menu') ? ' active' : '' }}">Menu</a>
+            <a href="#contact" class="nav-item nav-link{{ Request::is('/#contact') ? ' active' : '' }}">Contact</a>
         </div>
         <ul class="navbar-nav ms-auto">
             <!-- Authentication Links -->
