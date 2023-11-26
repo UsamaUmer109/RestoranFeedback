@@ -5,22 +5,18 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RatingController;
-use App\Models\Category;
-use App\Models\Product;
-use App\Models\Rating;
 
-Route::get('/', function () {
-    $category = Category::select('*')->get();
-    $products = Product::select('*')->get();
-    $ratings  = Rating::select('*')->get();
-    return view('welcome', compact('products', 'category', 'ratings'));
-});
+
+
+
+
 
 Auth::routes();
 
+// Guest Routes
+Route::get('/', [WelcomeController::class, 'welcome'])->name('welcome');
 Route::get('/productdetail/{id}', [WelcomeController::class, 'productdetail'])->name('productdetail');
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::match(['GET','POST'],'/add-rating', [RatingController::class, 'addRating'])->name('addRating');
 
 
 
@@ -43,5 +39,7 @@ Route::prefix('admin')->middleware('admin')->group(function(){
     Route::get('/product/delete/{id}',  [AdminController::class, 'deleteProduct'])->name('admin.deleteProduct');
     // Rating and Feedback
     Route::get('/ratings', [RatingController::class, 'ratings'])->name('admin.ratings');
+    Route::post('/admin/updateRatingStatus', [RatingController::class, 'updateRatingStatus'])->name('admin.updateRatingStatus');
 });
-Route::post('/admin/updateRatingStatus', [RatingController::class, 'updateRatingStatus'])->name('admin.updateRatingStatus');
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
