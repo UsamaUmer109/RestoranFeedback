@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Models\Category;
@@ -16,17 +17,27 @@ Route::get('/', function () {
 
 Auth::routes();
 
-// Route::get('/', [App\Http\Controllers\HomeController::class, 'welcome'])->name('welcome');
+Route::get('/productdetail/{id}', [WelcomeController::class, 'productdetail'])->name('productdetail');
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 
 // User Routes
-Route::middleware('user')->group(function(){
-    Route::get('/user/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
+Route::prefix('user')->middleware('user')->group(function(){
+    Route::get('/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
 });
 
 // Admin Routes
-Route::middleware('admin')->group(function(){
-    Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+Route::prefix('admin')->middleware('admin')->group(function(){
+    // Dashboard
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    // User
+    Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
+    Route::get('/user/delete/{id}',  [AdminController::class, 'deleteUser'])->name('user.deleteUser');
+    // Categories
+    Route::get('/categories', [AdminController::class, 'categories'])->name('admin.categories');
+    // Product
+    Route::get('/products', [AdminController::class, 'products'])->name('admin.products');
+    Route::get('/product/delete/{id}',  [AdminController::class, 'deleteProduct'])->name('user.deleteProduct');
 });
