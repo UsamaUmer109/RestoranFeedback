@@ -17,7 +17,10 @@ class AdminController extends Controller
     // show admin dashboard
     public function dashboard(Request $request)
     {
-        return view('admin.dashboard');
+        $categoriescount = Category::count();
+        $productscount   = Product::count();
+        $userscount      = User::count();
+        return view('admin.dashboard', compact('categoriescount', 'productscount', 'userscount'));
     }
     // show admin user list
     public function users(Request $request)
